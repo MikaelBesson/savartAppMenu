@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#fondecran {
+    width: 100%;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.userConnect, .userRegister {
+    width: 40%;
+    height: 20rem;
+    border-radius: 20%;
+    box-shadow: 25px 8px 27px -13px #5eb5e0, -4px -3px 16px -1px #8116c9;
+    margin: 20px auto;
+
+    form {
+        text-align: center;
+        font-size: larger;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    input {
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    button {
+        font-size: medium;
+        padding: 1%;
+        border-radius: 10%;
+    }
+
+    button:hover {
+        color: #8625ee;
+    }
+}
+
+.header {
+    width: 90%;
+    margin: 8rem auto;
+    text-align: end;
+
+    a {
+        margin-left: 20px;
+    }
+
+    a:hover {
+        background-color: #5eb5e0;
+    }
+}
+
+.RouteNotFound {
+    width: 30%;
+    text-align: center;
+    margin: 0 auto;
+    border: 2px solid red;
+    background-color: #ef6969;
+}
+
+
+
+
