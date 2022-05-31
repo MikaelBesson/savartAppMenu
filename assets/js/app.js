@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import '../css/app.scss';
+import '../scss/app.scss';
 import Home from '../component/Home';
 import Header from "../component/Header";
 import {RouteNotFound} from "../component/RouteNotFound";
@@ -14,15 +14,9 @@ ReactDOM.render(
         <Header />
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="*" element={<RouteNotFound />} />
             <Route path="UserRegister" element={<UserRegister />} />
+            <Route path="*" element={<RouteNotFound />} />
         </Routes>
     </BrowserRouter>,
 
 document.getElementById('root'));
-
-
-
-
-
-

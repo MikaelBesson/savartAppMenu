@@ -1,6 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
+import * as PropTypes from "prop-types";
 
+function Login() {
+    return null;
+}
+
+Login.propTypes = {setToken: PropTypes.func};
 export const ConnectUser = function () {
+    const [token, setToken] = useState();
+
+    if(!token) {
+        return <Login setToken = {setToken} />
+    }
         return (
             <div className='userConnect'>
                 <h1>Connection</h1>
