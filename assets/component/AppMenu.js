@@ -1,6 +1,10 @@
 import React from 'react';
 
-
+/**
+ * returns the menu application view
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const AppMenu = function () {
     return (
         <div className="appMenu">
@@ -8,4 +12,3 @@ export const AppMenu = function () {
         </div>
     );
 }
-export default AppMenu;

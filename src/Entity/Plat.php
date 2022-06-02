@@ -11,21 +11,20 @@ class Plat
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private ?string $name;
 
     #[ORM\Column(type: 'boolean')]
-    private $is_active;
-
-    #[ORM\OneToOne(targetEntity: Media::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $media;
+    private ?bool $is_active;
 
     #[ORM\OneToOne(targetEntity: Category::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private $category;
+    private ?category $category;
+
+    #[ORM\Column('string')]
+    private mixed $image;
 
     public function getId(): ?int
     {
@@ -56,17 +55,6 @@ class Plat
         return $this;
     }
 
-    public function getMedia(): ?media
-    {
-        return $this->media;
-    }
-
-    public function setMedia(media $media): self
-    {
-        $this->media = $media;
-
-        return $this;
-    }
 
     public function getCategory(): ?category
     {
@@ -77,6 +65,12 @@ class Plat
     {
         $this->category = $category;
 
+        return $this;
+    }
+
+    public function setImages(mixed $image)
+    {
+        $this->image = $image;
         return $this;
     }
 }

@@ -16,6 +16,9 @@ use Doctrine\ORM\EntityManagerInterface;
 class UserController extends AbstractController
 {
 
+    /** function that retrieves all users
+     * @return Response
+     */
     public function index(): Response
     {
         $users = $this->getDoctrine()
@@ -26,6 +29,11 @@ class UserController extends AbstractController
     }
 
 
+    /** function to add a user
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return JsonResponse
+     */
     public function store(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $data = json_decode($request->getContent(), true);

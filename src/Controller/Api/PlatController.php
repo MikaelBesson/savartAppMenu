@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PlatController extends AbstractController
 {
+    /** function that retrieves all plats
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         $plat = $this->getDoctrine()
@@ -23,13 +26,18 @@ class PlatController extends AbstractController
         return $this->json($plat);
     }
 
+    /** function to add a plat
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return JsonResponse
+     */
     public function store(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $data =json_decode($request->getContent(), true);
 
         $plat = new Plat();
         $plat->setName($data['name']);
-        $plat->setMedia($data['image']);
+        $plat->setImages($data['image']);
         $plat->setCategory($data['category']);
         $plat->setIsActive($data['active']);
 

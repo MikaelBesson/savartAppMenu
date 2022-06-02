@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class CategoryController extends AbstractController
 {
+    /** function that retrieves all categories
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         $category = $this->getDoctrine()
@@ -22,18 +25,21 @@ class CategoryController extends AbstractController
         return $this->json($category);
     }
 
+    /**
+     * function to add a category
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return JsonResponse
+     */
     public function store(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $data = json_encode($request->getContent(), true);
 
         $category = new Category();
         $category->setName($data['name']);
-
         $entityManager->persist($category);
         $entityManager->flush();
 
         return $this->json($category);
     }
-
-
 }

@@ -11,38 +11,59 @@
     top: 0;
     left: 0;
 }
+// scss home page //
 
-.userConnect, .userRegister {
+.home {
     width: 40%;
     height: 20rem;
     border-radius: 20%;
     box-shadow: 25px 8px 27px -13px #5eb5e0, -4px -3px 16px -1px #8116c9;
-    margin: 20px auto;
-
-    form {
-        text-align: center;
-        font-size: larger;
-        width: 90%;
-        margin: 0 auto;
-    }
+    margin: 5rem auto;
 
     h1 {
         text-align: center;
     }
 
-    input {
-        border-radius: 10px;
-        text-align: center;
+    form {
+        display: flex;
+        justify-content: space-evenly;
+
+        .boxlabel {
+            width: 20%;
+            flex-direction: column;
+            text-align: start;
+            padding: 2em 1rem;
+            margin-top: 1rem;
+            label {
+                width: 100%;
+            }
+
+        }
+        .boxinput {
+            width: 50%;
+            flex-direction: column;
+            text-align: start;
+            padding: 1em 1rem;
+            input {
+                width: 100%;
+                text-align: center;
+                margin-top: 1rem;
+            }
+        }
     }
 
-    button {
-        font-size: medium;
+    .button {
+        display: block;
+        width: 20%;
+        margin: auto auto;
         padding: 1%;
-        border-radius: 10%;
-    }
 
-    button:hover {
-        color: #8625ee;
+        button {
+            padding: 2% 2%;
+        }
+        button:hover {
+            background-color: #5eb5e0;
+        }
     }
 }
 
@@ -67,7 +88,3 @@
     border: 2px solid red;
     background-color: #ef6969;
 }
-
-
-
-

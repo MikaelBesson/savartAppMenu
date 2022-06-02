@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import '../scss/app.scss';
-import Home from '../component/Home';
-import Header from "../component/Header";
+import {Home} from '../component/Home';
+import {Header} from "../component/Header";
 import {RouteNotFound} from "../component/RouteNotFound";
-import {UserRegister} from "../component/UserRegister";
 import * as ReactDOM from "react-dom";
+import {Admin2} from "../component/Admin2";
 
 ReactDOM.render(
 
@@ -14,7 +14,7 @@ ReactDOM.render(
         <Header />
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="UserRegister" element={<UserRegister />} />
+            <Route path={"/admin2"} element={<Admin2 />} />
             <Route path="*" element={<RouteNotFound />} />
         </Routes>
     </BrowserRouter>,

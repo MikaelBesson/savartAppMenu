@@ -1,0 +1,45 @@
+.adminboard {
+  background-color: lightgray;
+  width: 90%;
+  height: 80vh;
+  margin: 2rem auto;
+
+  .title{
+    width: 100%;
+    text-align: center;
+  }
+
+  .content {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+    .sidebar-left {
+      width: 20%;
+      margin-top: 2rem;
+      border: 1px solid gray;
+      border-radius: 5%;
+      box-shadow: 2px 2px 2px 2px;
+
+      h2, ul {
+        text-align: center;
+      }
+      ul {
+        list-style-type: none;
+        padding-top: 1rem;
+      }
+      li {
+        padding-top: 0.5em;
+        text-align: start;
+        padding-left: 2rem;
+      }
+  }
+    .content2 {
+      width: 70%;
+      margin-top: 2rem;
+      border: 1px solid gray;
+      border-radius: 5%;
+      box-shadow: 2px 2px 2px 2px;
+    }
+}
+}

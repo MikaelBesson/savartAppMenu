@@ -11,21 +11,21 @@ class Ingredient
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private ?string $name;
 
     #[ORM\Column(type: 'boolean')]
-    private $is_active;
+    private ?bool $is_active;
 
-    #[ORM\OneToOne(targetEntity: Media::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $media;
 
     #[ORM\OneToOne(targetEntity: Plat::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private $plat;
+    private ?plat $plat;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $image;
 
     public function getId(): ?int
     {
@@ -56,17 +56,6 @@ class Ingredient
         return $this;
     }
 
-    public function getMedia(): ?media
-    {
-        return $this->media;
-    }
-
-    public function setMedia(media $media): self
-    {
-        $this->media = $media;
-
-        return $this;
-    }
 
     public function getPlat(): ?plat
     {
@@ -76,6 +65,18 @@ class Ingredient
     public function setPlat(plat $plat): self
     {
         $this->plat = $plat;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

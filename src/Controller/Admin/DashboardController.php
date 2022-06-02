@@ -4,10 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Entity\Ingredient;
-use App\Entity\Media;
 use App\Entity\Plat;
 use App\Entity\User;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -17,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
-    /**
+    /** return easy admin view
      * @Route("/admin")
      */
    public function index(): Response
@@ -26,12 +24,18 @@ class DashboardController extends AbstractDashboardController
    }
 
 
+    /** function to configure the dashboard
+     * @return Dashboard
+     */
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             ->setTitle('Welcome Boss');
     }
 
+    /** function to display the links used in the dashboard
+     * @return iterable
+     */
     public function configureMenuItems(): iterable
     {
         yield MenuItem::LinkToDashboard('dashboard', 'fa fa-home');
@@ -50,10 +54,6 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::subMenu('Ingredient', 'fa fa-bars')->setSubItems([
             MenuItem::linkToCrud('Voir les ingredients','fas fa-eye', Ingredient::class),
-        ]);
-
-        yield MenuItem::subMenu('Media', 'fa fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Voir les medias','fas fa-eye', Media::class),
         ]);
     }
 }

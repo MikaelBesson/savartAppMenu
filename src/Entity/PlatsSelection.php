@@ -11,17 +11,17 @@ class PlatsSelection
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
-    private $user;
+    private ?user $user;
 
     #[ORM\ManyToOne(targetEntity: Repas::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $repas;
+    private ?repas $repas;
 
     #[ORM\ManyToOne(targetEntity: Plat::class)]
-    private $plat;
+    private ?plat $plat;
 
     public function getId(): ?int
     {

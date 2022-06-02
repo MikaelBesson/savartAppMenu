@@ -18,13 +18,17 @@ class PlatCrudController extends AbstractCrudController
     }
 
 
+    /** returns the "easy admin" view for plat management
+     * @param string $pageName
+     * @return iterable
+     */
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('name', 'Nom'),
             BooleanField::new('is_active', 'Cacher/Activer'),
-            ImageField::new('media')->setUploadDir('public/upload/images'),
+            ImageField::new('media'),
             ChoiceField::new('category')->setChoices([
                 'Entree' => 'entree',
                 'Plat' => 'plat',
