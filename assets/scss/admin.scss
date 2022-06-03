@@ -4,7 +4,7 @@
   height: 80vh;
   margin: 2rem auto;
 
-  .title{
+  .title {
     width: 100%;
     text-align: center;
   }
@@ -24,22 +24,57 @@
       h2, ul {
         text-align: center;
       }
+
       ul {
         list-style-type: none;
         padding-top: 1rem;
       }
+
       li {
         padding-top: 0.5em;
         text-align: start;
         padding-left: 2rem;
       }
-  }
+    }
+
     .content2 {
       width: 70%;
       margin-top: 2rem;
       border: 1px solid gray;
       border-radius: 5%;
       box-shadow: 2px 2px 2px 2px;
+
+      h1 {
+        text-align: center;
+      }
+
+      .add_button {
+        margin-left: 10%;
+      }
+
+      thead {
+        padding: 5px 30px;
+      }
+
+      .table_box {
+        th, td {
+          padding: 5px 30px;
+        }
+      }
+
+      label {
+        margin-top: 1.5em;
+        margin-left: 1.5em;
+      }
+
+      input {
+        margin-left: 2em;
+      }
+
+      button {
+        margin-top: 1.5em;
+        margin-left: 20em;
+      }
     }
-}
+  }
 }

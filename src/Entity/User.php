@@ -15,9 +15,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private ?int $id;
 
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private ?string $username;
-
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
@@ -35,18 +32,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getUsername(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
     /**
      * A visual identifier that represents this user.
      *
@@ -54,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->username;
+        return $this->name;
     }
 
     /**
@@ -74,6 +59,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMainRole(): string
+    {
+        return in_array('ROLE_ADMIN', $this->getRoles()) ? 'Admin' : 'Utilisateur';
     }
 
     /**

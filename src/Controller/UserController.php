@@ -28,6 +28,35 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * add a new user.
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    #[Route('/add', name: 'user_add', methods: ['GET', 'POST'])]
+    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'user.add_successfully');
+
+            return $this->redirectToRoute('admin_user_add', [
+                'user' => $user
+            ]);
+        }
+
+        return $this->render('users/users-form.html.twig', [
+            'user' => $user,
+            'user_form' => $form->createView(),
+        ]);
+    }
 
     /**
      * Edit a user.
@@ -52,12 +81,11 @@ class UserController extends AbstractController
             ]);
         }
 
-        return $this->render('admin2/index.html.twig', [
+        return $this->render('users/users-form.html.twig', [
             'user' => $user,
-            'user_edit_form' => $form->createView(),
+            'user_form' => $form->createView(),
         ]);
     }
-
 
     /**
      * Suppression utilisateur.
@@ -70,6 +98,8 @@ class UserController extends AbstractController
     {
         $entityManager->remove($user);
         $entityManager->flush();
-        return $this->render('users/users-list.html.twig');
+        return $this->render('users/users-list.html.twig',[
+            'users' => $entityManager->getRepository(User::class)->findAll()
+        ]);
     }
 }

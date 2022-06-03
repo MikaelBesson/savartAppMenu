@@ -4,8 +4,9 @@
 
 {% block body %}
     <h1>Liste des utilisateurs</h1>
+    <a class="add_button" href="{{ path('admin_user_add') }}">Ajouter</a>
 
-    <table>
+    <table class="table_box">
         <thead>
             <tr>
                 <th>Id</th>
@@ -22,12 +23,12 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.lastname }}</td>
                     <td>{{ user.name }}</td>
-                    <th></th>
-                    <th>
+                    <th>{{ user.mainRole }}</th>
+                    <th class="edit_button">
                         <a href="{{ path('admin_user_edit', {id: user.id}) }}">Editer</a>
                     </th>
 
-                    <th>
+                    <th class="delete_button">
                         <a href="{{ path('admin_user_delete', {id: user.id}) }}">Supprimer</a>
                     </th>
                 </tr>

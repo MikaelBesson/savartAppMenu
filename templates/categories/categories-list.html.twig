@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Boss{% endblock %}
+
+{% block body %}
+    <h1>Liste des categories</h1>
+    <a class="add_button" href="{{ path('admin_category_add') }}">Ajouter</a>
+
+    <table class="table_box">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <th></th>
+                <th class="edit_button">
+                    <a href="{{ path('admin_category_edit', {id: category.id}) }}">Editer</a>
+                </th>
+
+                <th class="delete_button">
+                    <a href="{{ path('admin_category_delete', {id: category.id}) }}">Supprimer</a>
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
