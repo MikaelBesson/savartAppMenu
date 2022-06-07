@@ -20,7 +20,7 @@ class PlatType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom',
             ])
-            ->add('images', FileType::class, [
+            ->add('image', FileType::class, [
                 'mapped' => true,
             ])
             ->add('category', ChoiceType::class, [

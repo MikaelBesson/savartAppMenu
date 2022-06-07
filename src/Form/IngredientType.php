@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
 use App\Entity\Ingredient;
 use App\Entity\Plat;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -21,18 +20,14 @@ class IngredientType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom',
             ])
-            ->add('images', FileType::class, [
+            ->add('image', FileType::class, [
                 'mapped' => true,
             ])
             ->add('plat', ChoiceType::class, [
                 'choices' => [
-                    new Plat(''),
-                    new Category([
-                        'choices' => [
-                            new Category('Entrees'),
-                            new Category('Plat')
-                        ]
-                    ]),
+                    new Plat('Entrees'),
+                    new Plat('plat'),
+                    new Plat('accompagnement'),
                 ]
             ])
             ->add('submit', SubmitType::class, [
