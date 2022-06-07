@@ -26,7 +26,8 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    /** add a new category.
+    /**
+     * add a new category.
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
@@ -79,7 +80,7 @@ class CategoryController extends AbstractController
         }
 
         return $this->render('admin/index.html.twig', [
-            'category' =>$category,
+            'category' => $category,
             'category_edit_form' => $form->createView(),
         ]);
     }

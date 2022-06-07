@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Boss{% endblock %}
+
+{% block body %}
+    <h1>Liste des ingredients</h1>
+    <a class="add_button" href="{{ path('admin_ingredient_add') }}">Ajouter</a>
+
+    <table class="table_box">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Visible</th>
+            <th>Image</th>
+            <th>Plat</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ingredient in ingredients %}
+            <tr>
+                <td>{{ ingredient.id }}</td>
+                <td>{{ ingredient.name }}</td>
+                <td>{{ ingredient.isActive }}</td>
+                <td>{{ media }}</td>
+                <td>{{ ingredient.plat }}</td>
+                <th></th>
+                <th class="edit_button">
+                    <a href="{{ path('admin_ingredient_edit', {id: ingredient.id}) }}">Editer</a>
+                </th>
+
+                <th class="delete_button">
+                    <a href="{{ path('admin_ingredient_delete', {id: ingredient.id}) }}">Supprimer</a>
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

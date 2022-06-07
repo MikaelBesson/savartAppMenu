@@ -2,27 +2,33 @@
 
 namespace App\Form;
 
-use App\Entity\User;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use App\Entity\Category;
+use App\Entity\Plat;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class PlatType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            /*>add('roles')*/
             ->add('name', TextType::class, [
                 'label' => 'Nom',
             ])
-            ->add('lastname', TextType::class, [
-                'label' => 'Prenom',
+            ->add('images', FileType::class, [
+                'mapped' => true,
             ])
-            ->add('password', PasswordType::class)
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    new Category('Entrees'),
+                    new Category('Plat'),
+                ]
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
             ])
@@ -32,7 +38,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Plat::class,
         ]);
     }
 }

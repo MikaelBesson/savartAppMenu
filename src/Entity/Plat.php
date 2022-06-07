@@ -68,7 +68,12 @@ class Plat
         return $this;
     }
 
-    public function setImages(mixed $image)
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImages(mixed $image): self
     {
         $this->image = $image;
         return $this;

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Boss{% endblock %}
+
+{% block body %}
+    <h1>Liste des plats</h1>
+    <a class="add_button" href="{{ path('admin_plat_add') }}">Ajouter</a>
+
+    <table class="table_box">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Visible</th>
+            <th>Image</th>
+            <th>Categorie</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for plat in plats %}
+            <tr>
+                <td>{{ plat.id }}</td>
+                <td>{{ plat.name }}</td>
+                <td>{{ plat.isActive }}</td>
+                <td>{{ media }}</td>
+                <td>{{ plat.category }}</td>
+                <th></th>
+                <th class="edit_button">
+                    <a href="{{ path('admin_plat_edit', {id: plat.id}) }}">Editer</a>
+                </th>
+
+                <th class="delete_button">
+                    <a href="{{ path('admin_plat_delete', {id: plat.id}) }}">Supprimer</a>
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
