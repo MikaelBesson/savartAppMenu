@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Plat;
 use App\Form\PlatType;
+use App\Repository\CategoryRepository;
 use App\Repository\PlatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,12 +18,14 @@ class PlatController extends AbstractController
     /**
      * show all plats from template and/plats route
      * @param PlatRepository $platRepository
+     * @param CategoryRepository $categoryRepository
      * @return Response
      */
     #[Route('/plats', name: 'plats_list')]
-    public function showAllPlats(PlatRepository $platRepository): Response
+    public function showAllPlats(PlatRepository $platRepository, CategoryRepository $categoryRepository): Response
     {
         return $this->render('plats/plats-List.html.twig', [
+            'categories' => $categoryRepository->findAll(),
             'plats' => $platRepository->findAll(),
         ]);
     }

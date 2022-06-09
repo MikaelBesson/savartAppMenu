@@ -32,7 +32,6 @@
                 <th class="edit_button">
                     <a href="{{ path('admin_ingredient_edit', {id: ingredient.id}) }}">Editer</a>
                 </th>
-
                 <th class="delete_button">
                     <a href="{{ path('admin_ingredient_delete', {id: ingredient.id}) }}">Supprimer</a>
                 </th>
@@ -40,5 +39,4 @@
         {% endfor %}
         </tbody>
     </table>
-
 {% endblock %}

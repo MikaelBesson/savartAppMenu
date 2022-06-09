@@ -25,7 +25,8 @@ class PlatType extends AbstractType
                 'mapped' => true,
             ])
             ->add('isActive', CheckboxType::class, [
-                'label' => 'Visibilité OUI/NON'
+                'label' => 'Visibilité OUI',
+                'data' => true,
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class

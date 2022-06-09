@@ -4,6 +4,15 @@
 
 {% block body %}
     <h1>Liste des plats</h1>
+    <div>
+        <label for="category-chooser">Filtrer par catégorie</label>
+        <select name="category" id="category-chooser">
+            <option value="no-filter"></option>
+            {% for category in categories %}
+                <option value="{{ category.name }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
     <a class="add_button" href="{{ path('admin_plat_add') }}">Ajouter</a>
 
     <table class="table_box">
@@ -28,7 +37,7 @@
                     <img src="{{ plat.image }}" alt="{{ plat.name }}">
                 </td>
                 <td>{{ plat.category }}</td>
-                <th></th>
+
                 <th class="edit_button">
                     <a href="{{ path('admin_plat_edit', {id: plat.id}) }}">Editer</a>
                 </th>
@@ -41,4 +50,9 @@
         </tbody>
     </table>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('adminCategoryFilter') }}
 {% endblock %}

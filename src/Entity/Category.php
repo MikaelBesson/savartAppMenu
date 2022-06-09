@@ -74,7 +74,6 @@ class Category
                 $plat->setCategory(null);
             }
         }
-
         return $this;
     }
 }
