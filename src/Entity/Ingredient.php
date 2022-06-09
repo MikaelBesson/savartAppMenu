@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
 class Ingredient
@@ -71,13 +72,17 @@ class Ingredient
 
     public function getImage(): ?string
     {
-        return $this->image;
+        return '/upload/images/ingredient/' . $this->image;
     }
 
     public function setImage(string $image): self
     {
         $this->image = $image;
-
         return $this;
+    }
+
+    #[Pure] public function __toString(): string
+    {
+        return $this->getName();
     }
 }

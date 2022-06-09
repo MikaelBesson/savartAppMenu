@@ -1,15 +1,15 @@
 .adminboard {
-  background-color: lightgray;
+  background-color: whitesmoke;
   width: 90%;
   height: 80vh;
   margin: 2rem auto;
 
   .title {
-    background-color: grey;
+    background-color: lightgrey;
     width: 90%;
     margin: 0 auto;
-    border: 1px solid gray;
-    box-shadow: 2px 2px 2px 2px;
+    padding: 2px;
+    box-shadow: 0 6px 11px 5px rgba(0,0,0,0.8);
     text-align: center;
     text-shadow: 2px 2px 2px whitesmoke;
   }
@@ -23,15 +23,14 @@
       width: 20%;
       height: 60vh;
       margin-top: 2rem;
-      border: 1px solid gray;
-      box-shadow: 2px 2px 2px 2px;
+      box-shadow: 0 6px 11px 5px rgba(0,0,0,0.8);
 
       h2 {
-        background-color: grey;
+        background-color: lightgrey;
         text-align: center;
+        padding: 2px;
         text-shadow: 2px 2px 2px whitesmoke;
-        border: 1px solid gray;
-        box-shadow: 2px 2px 2px 2px;
+        box-shadow: 0 6px 11px 5px rgba(0,0,0,0.8);
       }
 
       ul {
@@ -50,18 +49,35 @@
       }
     }
 
+    .home_admin {
+      h2 {
+        text-align: center;
+      }
+      ul {
+        padding-left: 5rem;
+        padding-top: 2rem;
+      }
+      p {
+        text-align: center;
+      }
+    }
+
     .content2 {
       width: 70%;
       margin-top: 2rem;
-      border: 1px solid gray;
-      box-shadow: 2px 2px 2px 2px;
+      box-shadow: 0 6px 11px 5px rgba(0,0,0,0.8);
+
+      img {
+        width: 60px;
+        height: 60px;
+      }
 
       h1 {
-        background-color: grey;
+        background-color: lightgrey;
         text-align: center;
+        padding: 2px;
         text-shadow: 2px 2px 2px whitesmoke;
-        border: 1px solid gray;
-        box-shadow: 2px 2px 2px 2px;
+        box-shadow: 0 6px 11px 5px rgba(0,0,0,0.8);
       }
 
       .add_button {

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PlatRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
 class Plat
@@ -19,12 +20,13 @@ class Plat
     #[ORM\Column(type: 'boolean')]
     private ?bool $is_active;
 
-    #[ORM\OneToOne(targetEntity: Category::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?category $category;
 
     #[ORM\Column('string')]
-    private mixed $image;
+    private string $image;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'plats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category;
 
     public function getId(): ?int
     {
@@ -55,27 +57,31 @@ class Plat
         return $this;
     }
 
+    public function getImage(): ?string
+    {
+        return '/upload/images/plats/' . $this->image;
+    }
 
-    public function getCategory(): ?category
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+    #[Pure] public function __toString(): string
+    {
+        return $this->getName();
+    }
+
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function setCategory(category $category): self
+    public function setCategory(?Category $category): self
     {
         $this->category = $category;
 
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImages(mixed $image): self
-    {
-        $this->image = $image;
         return $this;
     }
 }

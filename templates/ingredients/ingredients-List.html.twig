@@ -12,6 +12,7 @@
             <th>Id</th>
             <th>Nom</th>
             <th>Visible</th>
+            <th>Image</th>
             <th>Plat</th>
             <th></th>
             <th></th>
@@ -22,8 +23,10 @@
             <tr>
                 <td>{{ ingredient.id }}</td>
                 <td>{{ ingredient.name }}</td>
-                <td>{{ ingredient.isActive }}</td>
-                <td>{{ ingredient.image }}</td>
+                <td>{{ ingredient.isActive == 1 ? 'Oui':'NON' }}</td>
+                <td>
+                    <img src="{{ ingredient.image }}" alt="{{ ingredient.name }}">
+                </td>
                 <td>{{ ingredient.plat }}</td>
                 <th></th>
                 <th class="edit_button">

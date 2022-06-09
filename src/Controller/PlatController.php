@@ -41,6 +41,19 @@ class PlatController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $newFileName = (new \DateTime())->format('Y-m-d-H-i-s') . uniqid();
+
+            $image = $form->get('image')->getData();
+            $extension = $image->guessExtension();
+            if (!$extension) {
+                // extension cannot be guessed
+                $extension = 'bin';
+            }
+            $newFileName .= ".$extension";
+            $image->move(__DIR__ . '/../../public/upload/images/plats/', $newFileName);
+            $plat->setImage($newFileName);
+
             $entityManager->persist($plat);
             $entityManager->flush();
 

@@ -12,6 +12,7 @@
             <th>Id</th>
             <th>Nom</th>
             <th>Visible</th>
+            <th>Image</th>
             <th>Categorie</th>
             <th></th>
             <th></th>
@@ -22,8 +23,10 @@
             <tr>
                 <td>{{ plat.id }}</td>
                 <td>{{ plat.name }}</td>
-                <td>{{ plat.isActive }}</td>
-                <td>{{ plat.image }}</td>
+                <td>{{ plat.isActive == 1 ? 'Oui':'NON'}}</td>
+                <td>
+                    <img src="{{ plat.image }}" alt="{{ plat.name }}">
+                </td>
                 <td>{{ plat.category }}</td>
                 <th></th>
                 <th class="edit_button">
