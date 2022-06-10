@@ -14,7 +14,7 @@ ReactDOM.render(
         <Header />
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path={"/admin2"} element={<Admin2 />} />
+            <Route path={"/admin"} element={<Admin2 />} />
             <Route path="*" element={<RouteNotFound />} />
         </Routes>
     </BrowserRouter>,

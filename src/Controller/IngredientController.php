@@ -83,6 +83,16 @@ class IngredientController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $newFileName = (new \DateTime())->format('Y-m-d H:i:s') . uniqid();
+
+            $image = $form->get('image')->getData();
+            $extension = $image->guessExtension();
+            if (!$extension) {
+                $extension = 'bin';
+            }
+            $newFileName .= ";$extension";
+            $image->move(__DIR__ .'/../../public/upload/images/ingredients', $newFileName);
+            $ingredient->setImage($newFileName);
             $entityManager->flush();
 
             $this->addFlash('success', 'ingredient.updated_successfully');

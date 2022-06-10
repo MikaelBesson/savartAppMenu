@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -21,7 +22,7 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Plat::class)]
     private $plats;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->plats = new ArrayCollection();
     }

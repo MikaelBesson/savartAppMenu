@@ -79,9 +79,9 @@ class CategoryController extends AbstractController
             ]);
         }
 
-        return $this->render('admin/index.html.twig', [
+        return $this->render('categories/categories-form.html.twig', [
             'category' => $category,
-            'category_edit_form' => $form->createView(),
+            'category_form' => $form->createView(),
         ]);
     }
 

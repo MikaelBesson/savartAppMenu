@@ -25,7 +25,8 @@ class IngredientType extends AbstractType
                 'mapped' => true,
             ])
             ->add('isActive', CheckboxType::class, [
-                'label' => 'Visibilité OUI/NON'
+                'label' => 'Visibilité OUI',
+                'data' => true,
             ])
             ->add('plat', EntityType::class, [
                 'class' => Plat::class
