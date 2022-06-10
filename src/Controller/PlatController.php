@@ -87,6 +87,19 @@ class PlatController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $newFileName = (new \DateTime())->format('Y-m-d-H-i-s') . uniqid();
+
+            $image = $form->get('image')->getData();
+            $extension = $image->guessExtension();
+            if (!$extension) {
+                // extension cannot be guessed
+                $extension = 'bin';
+            }
+            $newFileName .= ".$extension";
+            $image->move(__DIR__ . '/../../public/upload/images/plats/', $newFileName);
+            $plat->setImage($newFileName);
+
             $entityManager->flush();
 
             $this->addFlash('success', 'plat.updated_successfully');
@@ -95,9 +108,9 @@ class PlatController extends AbstractController
                 'id' => $plat->getId(),
             ]);
         }
-        return $this->render('admin/index.html.twig', [
+        return $this->render('plats/plats-form.html.twig', [
             'plat' => $plat,
-            'plat_edit_form' => $form->createView(),
+            'plat_form' => $form->createView(),
         ]);
     }
 

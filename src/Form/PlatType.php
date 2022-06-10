@@ -5,12 +5,14 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Plat;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PlatType extends AbstractType
@@ -35,6 +37,16 @@ class PlatType extends AbstractType
                 'label' => 'Envoyer',
             ])
         ;
+        $builder->get('image')->addModelTransformer(new CallBackTransformer(
+            function($image) {
+                return null;
+            },
+            function($image) {
+                return $image;
+            }
+        ));
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

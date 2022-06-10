@@ -62,16 +62,13 @@ class Plat
         return '/upload/images/plats/' . $this->image;
     }
 
+
     public function setImage(string $image): self
     {
         $this->image = $image;
         return $this;
     }
 
-    #[Pure] public function __toString(): string
-    {
-        return $this->getName();
-    }
 
     public function getCategory(): ?Category
     {
@@ -83,5 +80,11 @@ class Plat
         $this->category = $category;
 
         return $this;
+    }
+
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }
