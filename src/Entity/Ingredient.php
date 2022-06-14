@@ -21,9 +21,9 @@ class Ingredient
     private ?bool $is_active;
 
 
-    #[ORM\OneToOne(targetEntity: Plat::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: Recipe::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?plat $plat;
+    private ?Recipe $recipe;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $image;
@@ -58,14 +58,14 @@ class Ingredient
     }
 
 
-    public function getPlat(): ?plat
+    public function getPlat(): ?Recipe
     {
         return $this->plat;
     }
 
-    public function setPlat(plat $plat): self
+    public function setPlat(Recipe $recipe): self
     {
-        $this->plat = $plat;
+        $this->plat = $recipe;
 
         return $this;
     }

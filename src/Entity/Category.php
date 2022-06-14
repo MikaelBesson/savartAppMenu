@@ -19,8 +19,8 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $name;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Plat::class)]
-    private $plats;
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Recipe::class)]
+    private $recipes;
 
     #[Pure] public function __construct()
     {
@@ -50,29 +50,29 @@ class Category
     }
 
     /**
-     * @return Collection<int, Plat>
+     * @return Collection<int, Recipe>
      */
     public function getPlats(): Collection
     {
         return $this->plats;
     }
 
-    public function addPlat(Plat $plat): self
+    public function addPlat(Recipe $recipe): self
     {
-        if (!$this->plats->contains($plat)) {
-            $this->plats[] = $plat;
-            $plat->setCategory($this);
+        if (!$this->plats->contains($recipe)) {
+            $this->plats[] = $recipe;
+            $recipe->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removePlat(Plat $plat): self
+    public function removePlat(Recipe $recipe): self
     {
-        if ($this->plats->removeElement($plat)) {
+        if ($this->plats->removeElement($recipe)) {
             // set the owning side to null (unless already changed)
-            if ($plat->getCategory() === $this) {
-                $plat->setCategory(null);
+            if ($recipe->getCategory() === $this) {
+                $recipe->setCategory(null);
             }
         }
         return $this;

@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\PlatRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 
-#[ORM\Entity(repositoryClass: PlatRepository::class)]
-class Plat
+#[ORM\Entity(repositoryClass: RecipeRepository::class)]
+class Recipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

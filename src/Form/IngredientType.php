@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Ingredient;
-use App\Entity\Plat;
+use App\Entity\Recipe;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -29,7 +29,7 @@ class IngredientType extends AbstractType
                 'data' => true,
             ])
             ->add('plat', EntityType::class, [
-                'class' => Plat::class
+                'class' => Recipe::class
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',

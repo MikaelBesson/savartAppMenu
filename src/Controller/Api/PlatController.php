@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Plat;
+use App\Entity\Recipe;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,11 +19,11 @@ class PlatController extends AbstractController
      */
     public function index(): JsonResponse
     {
-        $plat = $this->getDoctrine()
-            ->getRepository(Plat::class)
+        $recipe = $this->getDoctrine()
+            ->getRepository(Recipe::class)
             ->findAll();
 
-        return $this->json($plat);
+        return $this->json($recipe);
     }
 
     /** function to add a plat
@@ -35,15 +35,15 @@ class PlatController extends AbstractController
     {
         $data =json_decode($request->getContent(), true);
 
-        $plat = new Plat();
-        $plat->setName($data['name']);
-        $plat->setImages($data['image']);
-        $plat->setCategory($data['category']);
-        $plat->setIsActive($data['active']);
+        $recipe = new Recipe();
+        $recipe->setName($data['name']);
+        $recipe->setImages($data['image']);
+        $recipe->setCategory($data['category']);
+        $recipe->setIsActive($data['active']);
 
-        $entityManager->persist($plat);
+        $entityManager->persist($recipe);
         $entityManager->flush();
 
-        return $this->json($plat);
+        return $this->json($recipe);
     }
 }

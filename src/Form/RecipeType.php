@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Category;
-use App\Entity\Plat;
+use App\Entity\Recipe;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PlatType extends AbstractType
+class RecipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -50,7 +50,7 @@ class PlatType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Plat::class,
+            'data_class' => Recipe::class,
         ]);
     }
 }

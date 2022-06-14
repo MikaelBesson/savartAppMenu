@@ -2,45 +2,45 @@
 
 namespace App\Controller;
 
-use App\Entity\Plat;
-use App\Form\PlatType;
+use App\Entity\Recipe;
+use App\Form\RecipeType;
 use App\Repository\CategoryRepository;
-use App\Repository\PlatRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/plat', name: 'admin_')]
-class PlatController extends AbstractController
+#[Route('/admin/recipe', name: 'admin_')]
+class RecipeController extends AbstractController
 {
     /**
-     * show all plats from template and/plats route
-     * @param PlatRepository $platRepository
+     * show all recipes from template and/recipe route
+     * @param RecipeRepository $recipeRepository
      * @param CategoryRepository $categoryRepository
      * @return Response
      */
-    #[Route('/plats', name: 'plats_list')]
-    public function showAllPlats(PlatRepository $platRepository, CategoryRepository $categoryRepository): Response
+    #[Route('/recipe', name: 'recipe_list')]
+    public function showAllRecipes(RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
     {
-        return $this->render('plats/plats-List.html.twig', [
+        return $this->render('recipe/recipe-List.html.twig', [
             'categories' => $categoryRepository->findAll(),
-            'plats' => $platRepository->findAll(),
+            'recipes' => $recipeRepository->findAll(),
         ]);
     }
 
     /**
-     * add a new plat.
+     * add a new recipe.
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    #[Route('/add', name: 'plat_add', methods: ['GET', 'POST'])]
+    #[Route('/add', name: 'recipe_add', methods: ['GET', 'POST'])]
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $plat = new Plat();
-        $form = $this->createForm(PlatType::class, $plat);
+        $recipe = new Recipe();
+        $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -55,35 +55,35 @@ class PlatController extends AbstractController
             }
             $newFileName .= ".$extension";
             $image->move(__DIR__ . '/../../public/upload/images/plats/', $newFileName);
-            $plat->setImage($newFileName);
+            $recipe->setImage($newFileName);
 
-            $entityManager->persist($plat);
+            $entityManager->persist($recipe);
             $entityManager->flush();
 
             $this->addFlash('success', 'plat.add_successfully');
 
-            return $this->redirectToRoute('admin_plat_add', [
-                'plat' => $plat
+            return $this->redirectToRoute('admin_recipe_add', [
+                'recipe' => $recipe
             ]);
         }
 
-        return $this->render('plats/plats-form.html.twig', [
-            'plat' => $plat,
-            'plat_form' => $form->createView(),
+        return $this->render('recipe/recipe-form.html.twig', [
+            'recipe' => $recipe,
+            'recipe_form' => $form->createView(),
         ]);
     }
 
     /**
-     * edit a plat.
-     * @param Plat $plat
+     * edit a recipe.
+     * @param Recipe $recipe
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    #[Route('/editer/{id}',name: 'plat_edit', methods: ['GET', 'POST'])]
-    public function edit(Plat $plat,Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/editer/{id}',name: 'recipe_edit', methods: ['GET', 'POST'])]
+    public function edit(Recipe $recipe, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(PlatType::class, $plat);
+        $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -98,35 +98,35 @@ class PlatController extends AbstractController
             }
             $newFileName .= ".$extension";
             $image->move(__DIR__ . '/../../public/upload/images/plats/', $newFileName);
-            $plat->setImage($newFileName);
+            $recipe->setImage($newFileName);
 
             $entityManager->flush();
 
             $this->addFlash('success', 'plat.updated_successfully');
 
-            return $this->redirectToRoute('admin_plat_edit', [
-                'id' => $plat->getId(),
+            return $this->redirectToRoute('admin_recipe_edit', [
+                'id' => $recipe->getId(),
             ]);
         }
-        return $this->render('plats/plats-form.html.twig', [
-            'plat' => $plat,
-            'plat_form' => $form->createView(),
+        return $this->render('recipe/recipe-form.html.twig', [
+            'recipe' => $recipe,
+            'recipe_form' => $form->createView(),
         ]);
     }
 
     /**
-     * suppression d'un plat.
-     * @param Plat $plat
+     * suppression d'une recette.
+     * @param Recipe $recipe
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    #[Route('/supprimer/{id}', name: 'plat_delete', methods: ['GET', 'POST'])]
-    public function delete(Plat $plat, EntityManagerInterface $entityManager): Response
+    #[Route('/supprimer/{id}', name: 'recipe_delete', methods: ['GET', 'POST'])]
+    public function delete(Recipe $recipe, EntityManagerInterface $entityManager): Response
     {
-        $entityManager->remove($plat);
+        $entityManager->remove($recipe);
         $entityManager->flush();
-        return $this->render('plats/plats-List.html.twig', [
-            'plats' => $entityManager->getRepository(Plat::class)->findAll()
+        return $this->render('recipe/recipe-List.html.twig', [
+            'recipes' => $entityManager->getRepository(Recipe::class)->findAll()
         ]);
     }
 }

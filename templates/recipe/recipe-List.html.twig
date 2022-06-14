@@ -3,7 +3,7 @@
 {% block title %}Hello Boss{% endblock %}
 
 {% block body %}
-    <h1>Liste des plats</h1>
+    <h1>Liste des recettes</h1>
     <div>
         <label for="category-chooser">Filtrer par catégorie</label>
         <select name="category" id="category-chooser">
@@ -13,7 +13,7 @@
             {% endfor %}
         </select>
     </div>
-    <a class="add_button" href="{{ path('admin_plat_add') }}">Ajouter</a>
+    <a class="add_button" href="{{ path('admin_recipe_add') }}">Ajouter</a>
 
     <table class="table_box">
         <thead>
@@ -28,22 +28,22 @@
         </tr>
         </thead>
         <tbody>
-        {% for plat in plats %}
+        {% for recipe in recipes %}
             <tr>
-                <td>{{ plat.id }}</td>
-                <td>{{ plat.name }}</td>
-                <td>{{ plat.isActive == 1 ? 'Oui':'NON'}}</td>
+                <td>{{ recipe.id }}</td>
+                <td>{{ recipe.name }}</td>
+                <td>{{ recipe.isActive == 1 ? 'Oui':'NON'}}</td>
                 <td>
-                    <img src="{{ plat.image }}" alt="{{ plat.name }}">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.name }}">
                 </td>
-                <td>{{ plat.category }}</td>
+                <td>{{ recipe.category }}</td>
 
                 <th class="edit_button">
-                    <a href="{{ path('admin_plat_edit', {id: plat.id}) }}">Editer</a>
+                    <a href="{{ path('admin_recipe_edit', {id: recipe.id}) }}">Editer</a>
                 </th>
 
                 <th class="delete_button">
-                    <a href="{{ path('admin_plat_delete', {id: plat.id}) }}">Supprimer</a>
+                    <a href="{{ path('admin_recipe_delete', {id: recipe.id}) }}">Supprimer</a>
                 </th>
             </tr>
         {% endfor %}
