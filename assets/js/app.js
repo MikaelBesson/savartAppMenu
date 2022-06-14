@@ -6,6 +6,8 @@ import {Header} from "../component/Header";
 import {RouteNotFound} from "../component/RouteNotFound";
 import * as ReactDOM from "react-dom";
 import {Admin2} from "../component/Admin2";
+import {AppMenu} from "../component/AppMenu";
+import './app-menu';
 
 ReactDOM.render(
 
@@ -16,6 +18,7 @@ ReactDOM.render(
             <Route path="/" element={<Home />} />
             <Route path={"/admin"} element={<Admin2 />} />
             <Route path="*" element={<RouteNotFound />} />
+            <Route path={"/appmenu"} element={<AppMenu />} />
         </Routes>
     </BrowserRouter>,
 

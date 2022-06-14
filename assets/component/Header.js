@@ -9,7 +9,7 @@ import React from 'react';
 export const Header = function () {
     return (
         <div className="header">
-            <a href="">Deconnection</a>
+            <a href="/">Retour a l'acceuil</a>
         </div>
     );
 }

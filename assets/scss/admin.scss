@@ -61,8 +61,29 @@
       }
     }
 
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgb(148, 145, 145);
+    }
+    ::-webkit-scrollbar-track:hover {
+      background: rgb(248, 246, 246);
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 6px;
+      background: #f50a0a;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      border-radius: 6px;
+      background: #980df6;
+    }
+
+
     .content2 {
+      overflow: auto;
       width: 70%;
+      height: 40em;
       margin-top: 2rem;
       box-shadow: 0 6px 11px 5px rgba(0,0,0,0.8);
 

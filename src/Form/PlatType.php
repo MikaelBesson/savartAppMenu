@@ -45,8 +45,6 @@ class PlatType extends AbstractType
                 return $image;
             }
         ));
-
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void
