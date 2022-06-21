@@ -7,12 +7,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
  * @method getDoctrine()
  */
-class PlatController extends AbstractController
+#[Route('/api/recipe', name: 'api_')]
+class RecipeController extends AbstractController
 {
     /** function that retrieves all plats
      * @return JsonResponse
@@ -37,7 +39,7 @@ class PlatController extends AbstractController
 
         $recipe = new Recipe();
         $recipe->setName($data['name']);
-        $recipe->setImages($data['image']);
+        $recipe->setImage($data['image']);
         $recipe->setCategory($data['category']);
         $recipe->setIsActive($data['active']);
 

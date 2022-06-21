@@ -127,3 +127,38 @@
         margin-top: 0.5em;
     }
 }
+
+// modalMenu scss //
+
+.modalMenu {
+    font-size: xx-large;
+    text-align: center;
+    margin: 5rem auto;
+    width: 80%;
+
+    .ant-select-selection-overflow {
+        width: 50%;
+        box-shadow: 2px 2px 5px 2px #000000;
+        height: 2rem;
+        font-size: large;
+        margin-top: 1.5rem;
+    }
+    .ant-select-selection-overflow:hover {
+        box-shadow: 2px 2px 5px 2px #099409;
+    }
+
+    .modalFooter {
+        width: 60%;
+        margin: 1rem auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        a {
+            font-size: large;
+        }
+        a:hover {
+            color: #8116c9;
+        }
+    }
+}

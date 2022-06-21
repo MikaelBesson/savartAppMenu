@@ -1,5 +1,6 @@
-import React from "react";
 import {ShowModalMenu} from "../Modal/ModalMenuSelect";
+import {BrowserRouter} from "react-router-dom";
+import * as ReactDOM from "react-dom";
 
 export const DayElement = function({ dayName, type }) {
 
@@ -7,8 +8,20 @@ export const DayElement = function({ dayName, type }) {
      * Handle selection button click to select menu.
      */
     function selectionButtonClicked() {
-        console.log("Jour: ", dayName);
-        console.log("Type: ", type );
+        return ReactDOM.render(
+            <BrowserRouter>
+                <div className={"modalMenu"}>
+                    <p>Menu pour le {dayName} {type}</p>
+                    <ShowModalMenu />
+                </div>
+            </BrowserRouter>,
+
+            document.getElementById('root')
+        );
+        /**
+         * console.log("Jour: ", dayName);
+         * console.log("Type: ", type );
+         */
     }
 
     return (

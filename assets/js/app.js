@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import '../scss/app.scss';
 import {Home} from '../component/Home';
@@ -11,7 +11,7 @@ import {AppMenu} from "../component/AppMenu";
 ReactDOM.render(
 
     <BrowserRouter>
-        <img src="../images/fondecran2.jpg" alt="/" id="fondecran"/>
+        <img src="../../assets/images/fondecran2.jpg" alt="/" id="fondecran"/>
         <Header />
         <Routes>
             <Route path="/" element={<Home />} />

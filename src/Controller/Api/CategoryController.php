@@ -7,10 +7,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @method getDoctrine()
  */
+#[Route('/api/category', name: 'api_')]
 class CategoryController extends AbstractController
 {
     /** function that retrieves all categories
