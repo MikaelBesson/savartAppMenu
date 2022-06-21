@@ -54,13 +54,13 @@ class RecipeController extends AbstractController
                 $extension = 'bin';
             }
             $newFileName .= ".$extension";
-            $image->move(__DIR__ . '/../../public/upload/images/plats/', $newFileName);
+            $image->move(__DIR__ . '/../../public/upload/images/recipes/', $newFileName);
             $recipe->setImage($newFileName);
 
             $entityManager->persist($recipe);
             $entityManager->flush();
 
-            $this->addFlash('success', 'plat.add_successfully');
+            $this->addFlash('success', 'recipe.add_successfully');
 
             return $this->redirectToRoute('admin_recipe_add', [
                 'recipe' => $recipe
@@ -97,12 +97,12 @@ class RecipeController extends AbstractController
                 $extension = 'bin';
             }
             $newFileName .= ".$extension";
-            $image->move(__DIR__ . '/../../public/upload/images/plats/', $newFileName);
+            $image->move(__DIR__ . '/../../public/upload/images/recipes/', $newFileName);
             $recipe->setImage($newFileName);
 
             $entityManager->flush();
 
-            $this->addFlash('success', 'plat.updated_successfully');
+            $this->addFlash('success', 'recipe.updated_successfully');
 
             return $this->redirectToRoute('admin_recipe_edit', [
                 'id' => $recipe->getId(),

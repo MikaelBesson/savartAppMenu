@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Ingredient;
-use App\Entity\Recipe;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -27,9 +25,6 @@ class IngredientType extends AbstractType
             ->add('isActive', CheckboxType::class, [
                 'label' => 'Visibilité OUI',
                 'data' => true,
-            ])
-            ->add('plat', EntityType::class, [
-                'class' => Recipe::class
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',

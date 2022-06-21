@@ -20,11 +20,6 @@ class Ingredient
     #[ORM\Column(type: 'boolean')]
     private ?bool $is_active;
 
-
-    #[ORM\OneToOne(targetEntity: Recipe::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Recipe $recipe;
-
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $image;
 
@@ -57,22 +52,9 @@ class Ingredient
         return $this;
     }
 
-
-    public function getPlat(): ?Recipe
-    {
-        return $this->plat;
-    }
-
-    public function setPlat(Recipe $recipe): self
-    {
-        $this->plat = $recipe;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
-        return '/upload/images/ingredient/' . $this->image;
+        return '/upload/images/ingredients/' . $this->image;
     }
 
     public function setImage(string $image): self

@@ -13,7 +13,6 @@
             <th>Nom</th>
             <th>Visible</th>
             <th>Image</th>
-            <th>Plat</th>
             <th></th>
             <th></th>
         </tr>
@@ -27,7 +26,7 @@
                 <td>
                     <img src="{{ ingredient.image }}" alt="{{ ingredient.name }}">
                 </td>
-                <td>{{ ingredient.plat }}</td>
+
                 <th></th>
                 <th class="edit_button">
                     <a href="{{ path('admin_ingredient_edit', {id: ingredient.id}) }}">Editer</a>

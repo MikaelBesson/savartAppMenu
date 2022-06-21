@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\Mapping as ORM;
-use JetBrains\PhpStorm\Pure;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -24,7 +23,7 @@ class Recipe
     #[ORM\Column('string')]
     private string $image;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'plats')]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'recipes')]
     #[ORM\JoinColumn(nullable: false)]
     private $category;
 
@@ -59,7 +58,7 @@ class Recipe
 
     public function getImage(): ?string
     {
-        return '/upload/images/plats/' . $this->image;
+        return '/upload/images/recipes/' . $this->image;
     }
 
 

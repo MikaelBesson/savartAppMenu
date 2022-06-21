@@ -7,7 +7,6 @@ import {RouteNotFound} from "../component/RouteNotFound";
 import * as ReactDOM from "react-dom";
 import {Admin2} from "../component/Admin2";
 import {AppMenu} from "../component/AppMenu";
-import './app-menu';
 
 ReactDOM.render(
 

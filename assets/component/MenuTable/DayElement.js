@@ -1,4 +1,5 @@
 import React from "react";
+import {ShowModalMenu} from "../Modal/ModalMenuSelect";
 
 export const DayElement = function({ dayName, type }) {
 
@@ -11,8 +12,8 @@ export const DayElement = function({ dayName, type }) {
     }
 
     return (
-        <td className={"box-select"}>
-            <button onClick={() => selectionButtonClicked()} className="select">Selection</button>
-        </td>
+       <td className={"box-select"}>
+           <button onClick={() => selectionButtonClicked()} className="select">Selection</button>
+       </td>
     );
 }

@@ -24,7 +24,7 @@ class Category
 
     #[Pure] public function __construct()
     {
-        $this->plats = new ArrayCollection();
+        $this->recipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,15 +52,15 @@ class Category
     /**
      * @return Collection<int, Recipe>
      */
-    public function getPlats(): Collection
+    public function getRecipes(): Collection
     {
-        return $this->plats;
+        return $this->recipes;
     }
 
-    public function addPlat(Recipe $recipe): self
+    public function addRecipe(Recipe $recipe): self
     {
-        if (!$this->plats->contains($recipe)) {
-            $this->plats[] = $recipe;
+        if (!$this->recipes->contains($recipe)) {
+            $this->recipes[] = $recipe;
             $recipe->setCategory($this);
         }
 
@@ -69,7 +69,7 @@ class Category
 
     public function removePlat(Recipe $recipe): self
     {
-        if ($this->plats->removeElement($recipe)) {
+        if ($this->recipes->removeElement($recipe)) {
             // set the owning side to null (unless already changed)
             if ($recipe->getCategory() === $this) {
                 $recipe->setCategory(null);

@@ -50,7 +50,7 @@ class IngredientController extends AbstractController
                 $extension = 'bin';
             }
             $newFileName .= ".$extension";
-            $image->move(__DIR__ .'/../../public/upload/images/ingredients', $newFileName);
+            $image->move(__DIR__ .'/../../public/upload/images/ingredients/', $newFileName);
             $ingredient->setImage($newFileName);
 
             $entityManager->persist($ingredient);
@@ -90,7 +90,7 @@ class IngredientController extends AbstractController
             if (!$extension) {
                 $extension = 'bin';
             }
-            $newFileName .= ";$extension";
+            $newFileName .= ".$extension";
             $image->move(__DIR__ .'/../../public/upload/images/ingredients', $newFileName);
             $ingredient->setImage($newFileName);
             $entityManager->flush();

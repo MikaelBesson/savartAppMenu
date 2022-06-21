@@ -39,7 +39,7 @@ export const AppMenu = function () {
                 </tbody>
             </table>
             <div className='table-footer'>
-                <a href="">Voir la liste</a>
+                <a href="">Voir la liste des courses</a>
             </div>
         </div>
     );
