@@ -11,7 +11,7 @@ import {AppMenu} from "../component/AppMenu";
 ReactDOM.render(
 
     <BrowserRouter>
-        <img src="../../assets/images/fondecran2.jpg" alt="/" id="fondecran"/>
+        <img src="../images/fondecran2.jpg" alt="/" id="fondecran"/>
         <Header />
         <Routes>
             <Route path="/" element={<Home />} />

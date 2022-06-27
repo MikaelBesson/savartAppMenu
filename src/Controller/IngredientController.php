@@ -122,5 +122,4 @@ class IngredientController extends AbstractController
             'ingredients' => $entityManager->getRepository(Ingredient::class)->findAll()
         ]);
     }
-
 }

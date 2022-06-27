@@ -1,60 +1,39 @@
 import 'antd/dist/antd.css';
-import {useState, useEffect} from "react";
-import {Select} from "antd";
+import {useState} from "react";
 
+export const ShowModalMenu = function({}) {
+    const [category, setCategory] = useState('');
 
-export const ShowModalMenu = function() {
-    const [recipe, setRecipe] = useState([]);
-    useEffect(() => {
-            async function getRecipe() {
-                const data = await fetch(`/api/recipe`);
-                setRecipe(await data.json());
-            }
-            /**
-             *  getRecipe()
-             *  .catch(() => alert('Erreur pendant la recuperation des données'));
-             */
-        },
-        []);
+    /**
+     *  let categorySelect = [];
+     *     let ingredientSelect= [];
+     *
+     *         let data = new XMLHttpRequest();
+     *         data.open('GET', '/api/CategoryController');
+     *         data.responseType = 'json';
+     *         data.onload = () => data.status === 200 && setCategory(data.response);
+     *         data.send();
+     *
+     *         function renderCategories(category) {
+     *             if (categorySelect.length > 0) {
+     *                 return categorySelect.map((category, index) => (
+     *                     <Category key={index} category={category} />
+     *                 ));
+     *             }
+     *             else return [];
+     *         }
+     * @type {*[]}
+     */
+
 
     return  (
         <>
-            <Select
-                className="ant-select-selection-overflow"
-                placeholder={"Choisisez une entrée"}
-            >
-            </Select>
-            <br/>
-            <Select
-                className="ant-select-selection-overflow"
-                placeholder={"Choisisez un plat"}
-            >
-            </Select>
-            <br/>
-            <Select
-                className="ant-select-selection-overflow"
-                placeholder={"Choisisez un accompagnement"}
-            >
-            </Select>
-            <br/>
-            <Select
-                className="ant-select-selection-overflow"
-                placeholder={"Choisisez un fromage"}
-            >
-            </Select>
-            <br/>
-            <Select
-                className="ant-select-selection-overflow"
-                placeholder={"Choisisez un dessert"}
-            >
-            </Select>
-            <br/>
-            <Select
-                className="ant-select-selection-overflow"
-                placeholder={"Choisisez un fruit"}
-            >
-            </Select>
-            <br/>
+            <div>
+                <select name="entry-choice" id="entry-choice" placeholder={"choisir une entree"}>
+                    <option value={category}>{category.name}</option>
+                </select>
+            </div>
+
             <div className={"modalFooter"}>
                 <a href="">Enregistrer</a>
                 <a href={"/appmenu"}>Retour au Menu</a>

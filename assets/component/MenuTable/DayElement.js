@@ -1,8 +1,10 @@
 import {ShowModalMenu} from "../Modal/ModalMenuSelect";
 import {BrowserRouter} from "react-router-dom";
 import * as ReactDOM from "react-dom";
+import {useState} from "react";
 
 export const DayElement = function({ dayName, type }) {
+    const [category, setCategory] = useState('');
 
     /**
      * Handle selection button click to select menu.
