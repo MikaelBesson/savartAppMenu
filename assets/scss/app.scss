@@ -152,16 +152,19 @@
         font-size: large;
         margin-top: 1.5rem;
     }
+
     .ant-select-selection-overflow:hover {
         box-shadow: 2px 2px 5px 2px #099409;
     }
 
-    .modalFooter {
-        width: 60%;
-        margin: 1rem auto;
+    .modal-menu-selection {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 500px;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: center;
 
         a {
             font-size: large;

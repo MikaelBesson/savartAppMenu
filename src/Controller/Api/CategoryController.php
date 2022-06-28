@@ -18,9 +18,10 @@ class CategoryController extends AbstractController
     /** function that retrieves all categories
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    #[Route('/all')]
+    public function index(EntityManagerInterface $entityManager): JsonResponse
     {
-        $category = $this->getDoctrine()
+        $category = $entityManager
             ->getRepository(Category::class)
             ->findAll();
 
@@ -33,6 +34,7 @@ class CategoryController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return JsonResponse
      */
+    #[Route('/add-category')]
     public function store(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $data = json_encode($request->getContent(), true);

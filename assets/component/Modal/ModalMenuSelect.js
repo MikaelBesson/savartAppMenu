@@ -1,44 +1,31 @@
 import 'antd/dist/antd.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-export const ShowModalMenu = function({}) {
-    const [category, setCategory] = useState('');
+export const ShowModalMenu = function() {
+    const [category, setCategory] = useState([]);
 
-    /**
-     *  let categorySelect = [];
-     *     let ingredientSelect= [];
-     *
-     *         let data = new XMLHttpRequest();
-     *         data.open('GET', '/api/CategoryController');
-     *         data.responseType = 'json';
-     *         data.onload = () => data.status === 200 && setCategory(data.response);
-     *         data.send();
-     *
-     *         function renderCategories(category) {
-     *             if (categorySelect.length > 0) {
-     *                 return categorySelect.map((category, index) => (
-     *                     <Category key={index} category={category} />
-     *                 ));
-     *             }
-     *             else return [];
-     *         }
-     * @type {*[]}
-     */
+    useEffect(() => {
+       fetch('/api/category/all')
+           .then(categories => categories.json())
+           .then(categories => setCategory(categories))
+           .catch(error => console.error("error de récupération"))
+    }, []);
 
+    console.log(category);
 
     return  (
-        <>
-            <div>
-                <select name="entry-choice" id="entry-choice" placeholder={"choisir une entree"}>
-                    <option value={category}>{category.name}</option>
-                </select>
-            </div>
+        <div className={"modal-menu-selection"}>
+            <select>
+            {category.map(item =>(
+                <option key = {item.id}>
+                   {item.name}
+                </option>
+            ))}
+            </select>
+           {/* <a href="">Enregistrer</a>
+            <a href={"/appmenu"}>Retour au Menu</a>*/}
+        </div>
 
-            <div className={"modalFooter"}>
-                <a href="">Enregistrer</a>
-                <a href={"/appmenu"}>Retour au Menu</a>
-            </div>
-        </>
     );
 }
 
