@@ -18,7 +18,6 @@ export const ShowModalMenu = function () {
 
   return (
     <div className="modal-menu-selection">
-      <h2>Sélectionnez une catégorie</h2>
       <select
         onChange={(e) =>
           setSelectedCategory(
@@ -26,24 +25,31 @@ export const ShowModalMenu = function () {
           )
         }
       >
+        <option value="" disabled selected>
+          Choisir une categorie
+        </option>
         {Array.from(categories).map((item) => (
           <option key={item[1].id} value={item[1].id}>
             {item[1].name}
           </option>
         ))}
       </select>
+      <br />
+      <br />
 
       {selectedCategory !== 0 && (
         <>
-          <h2>Sélectionnez une recette</h2>
           <select>
+            <option value="" disabled selected>
+              Choisir une recette
+            </option>
             {categories.get(selectedCategory).recipes.map((recipe) => (
               <option
                 key={recipe.id}
                 value={recipe.id}
-                style={{
+                /*style={{
                   backgroundImage: `url(${recipe.image})`,
-                }}
+                }}*/
               >
                 {recipe.name}
               </option>
@@ -54,8 +60,3 @@ export const ShowModalMenu = function () {
     </div>
   );
 };
-
-{
-  /* <a href="">Enregistrer</a>
-            <a href={"/appmenu"}>Retour au Menu</a>*/
-}
