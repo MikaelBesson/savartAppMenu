@@ -44,13 +44,7 @@ export const ShowModalMenu = function () {
               Choisir une recette
             </option>
             {categories.get(selectedCategory).recipes.map((recipe) => (
-              <option
-                key={recipe.id}
-                value={recipe.id}
-                /*style={{
-                  backgroundImage: `url(${recipe.image})`,
-                }}*/
-              >
+              <option key={recipe.id} value={recipe.id}>
                 {recipe.name}
               </option>
             ))}
