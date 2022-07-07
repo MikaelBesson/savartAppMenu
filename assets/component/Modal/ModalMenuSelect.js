@@ -1,9 +1,10 @@
 import "antd/dist/antd.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { Select } from "../Select/Select";
 import { Option } from "../Select/Option";
+import useForceUpdate from "antd/es/_util/hooks/useForceUpdate";
 
-export const ShowModalMenu = function () {
+export const ShowModalMenu = function ({ type }) {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [categories, setCategories] = useState(new Map());
 
@@ -41,9 +42,9 @@ export const ShowModalMenu = function () {
 
       {selectedCategory !== 0 && (
         <>
-          <Select title="Choisir une recette">
+          <Select title="Choisir une recette" type={type}>
             {categories.get(selectedCategory).recipes.map((recipe) => (
-              <Option key={recipe.id} value={recipe.id} img={recipe.image}>
+              <Option key={recipe.id} value={recipe.id} img={recipe.image} onS>
                 {recipe.name}
               </Option>
             ))}

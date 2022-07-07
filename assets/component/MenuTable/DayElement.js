@@ -9,17 +9,15 @@ export const DayElement = function ({ dayName, type }) {
   const showCategories = () => {
     ReactSwal.fire({
       title: "<strong>Vos envies pour </strong><br>" + dayName + " " + type,
-      html: <ShowModalMenu />,
+      html: <ShowModalMenu type={type} />,
       showCancelButton: true,
       focusConfirm: false,
-      animation: "slide-from-top",
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Ok!',
-      cancelButtonText: "Annuler",
     });
   };
 
   return (
-    <td onClick={showCategories} className={"box-select"}>
+    <td onClick={() => showCategories()} className={"box-select"}>
       Cliquez
     </td>
   );

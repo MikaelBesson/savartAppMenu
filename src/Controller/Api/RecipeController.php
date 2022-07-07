@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\Recipe;
+use App\Entity\UserRecipe;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,27 +25,6 @@ class RecipeController extends AbstractController
         $recipe = $this->getDoctrine()
             ->getRepository(Recipe::class)
             ->findAll();
-
-        return $this->json($recipe);
-    }
-
-    /** function to add a plat
-     * @param Request $request
-     * @param EntityManagerInterface $entityManager
-     * @return JsonResponse
-     */
-    public function store(Request $request, EntityManagerInterface $entityManager): JsonResponse
-    {
-        $data =json_decode($request->getContent(), true);
-
-        $recipe = new Recipe();
-        $recipe->setName($data['name']);
-        $recipe->setImage($data['image']);
-        $recipe->setCategory($data['category']);
-        $recipe->setIsActive($data['active']);
-
-        $entityManager->persist($recipe);
-        $entityManager->flush();
 
         return $this->json($recipe);
     }

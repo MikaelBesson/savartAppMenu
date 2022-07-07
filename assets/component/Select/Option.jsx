@@ -1,12 +1,18 @@
 import "./Select.scss";
 import { useState } from "react";
 
-export const Option = ({ children, identifier, img, onChange = () => {} }) => {
+export const Option = ({
+  children,
+  identifier,
+  img,
+  value,
+  onChange = () => {},
+}) => {
   const [selected, setSelected] = useState(false);
 
   const handleChange = () => {
     setSelected(!selected);
-    onChange(children, !selected);
+    onChange(value, !selected);
   };
 
   return (

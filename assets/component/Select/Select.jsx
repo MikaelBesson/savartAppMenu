@@ -1,9 +1,8 @@
 import "./Select.scss";
 import { useRef, useState, Children, cloneElement, useEffect } from "react";
 
-export const Select = ({ children, title, onSelectionDone = () => {} }) => {
+export const Select = ({ children, title, type }) => {
   const [showOptions, setShowOptions] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
   const parentRef = useRef();
   const optionsRef = useRef();
 
@@ -25,10 +24,9 @@ export const Select = ({ children, title, onSelectionDone = () => {} }) => {
         if (event.target.tagName === "BUTTON") {
           has = true;
         }
+        // Si on clic en dehors du composant, on quitte et on retire les éléments choisis.
         if (!has) {
           setShowOptions(false);
-          // On suppose que l'utilisateur annule.
-          setSelectedOptions([]);
         }
       }
     }
@@ -38,16 +36,22 @@ export const Select = ({ children, title, onSelectionDone = () => {} }) => {
     };
   }, [parentRef, optionsRef]);
 
+  /**
+   * Envoi vers le serveur.
+   * @param optionKey
+   * @param isSelected
+   */
   const handleSelectionChange = (optionKey, isSelected) => {
-    let current = selectedOptions;
-    if (isSelected && !current.includes(optionKey)) {
-      current.push(optionKey);
-    } else if (current.includes(optionKey)) {
-      current.splice(current.indexOf(optionKey), 1);
-    }
-
-    setSelectedOptions(current);
-    console.log(current);
+    fetch("/api/user-recipe/handle", {
+      method: "POST",
+      body: JSON.stringify({
+        recipe: optionKey,
+        selected: isSelected,
+        type: type,
+      }),
+    })
+      .then((result) => result.json())
+      .then((result) => console.log(result.message));
   };
 
   return (
