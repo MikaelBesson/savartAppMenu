@@ -1,7 +1,7 @@
 import "./Select.scss";
 import { useRef, useState, Children, cloneElement, useEffect } from "react";
 
-export const Select = ({ children, title }) => {
+export const Select = ({ children, title, onSelectionDone = () => {} }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const parentRef = useRef();
@@ -27,6 +27,8 @@ export const Select = ({ children, title }) => {
         }
         if (!has) {
           setShowOptions(false);
+          // On suppose que l'utilisateur annule.
+          setSelectedOptions([]);
         }
       }
     }

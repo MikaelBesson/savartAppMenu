@@ -16,10 +16,10 @@ export const Option = ({ children, identifier, img, onChange = () => {} }) => {
         <span>{children}</span>
       </div>
       <input
+        readOnly
         type="checkbox"
         id={identifier}
         checked={selected}
-        onChange={() => handleChange()}
         style={{
           transform: "scale(2)",
         }}
