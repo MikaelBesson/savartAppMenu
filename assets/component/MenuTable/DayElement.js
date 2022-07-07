@@ -7,22 +7,14 @@ export const DayElement = function ({ dayName, type }) {
   const ReactSwal = withReactContent(Swal);
 
   const showCategories = () => {
-    let inputValue;
     ReactSwal.fire({
       title: "<strong>Vos envies pour </strong><br>" + dayName + " " + type,
       html: <ShowModalMenu />,
       showCancelButton: true,
       focusConfirm: false,
+      animation: "slide-from-top",
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Ok!',
       cancelButtonText: "Annuler",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("sauvegarde", "reussie", "success").then((r) => {
-          console.log();
-        });
-      } else if (result.isDismissed) {
-        Swal.fire("Annuler", "aucun changement sauvegarder", "error");
-      }
     });
   };
 
