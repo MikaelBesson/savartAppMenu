@@ -10,7 +10,6 @@ export const DayElement = function ({ dayName, type }) {
     ReactSwal.fire({
       title: "<strong>Vos envies pour </strong><br>" + dayName + " " + type,
       html: <ShowModalMenu type={type} />,
-      showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> Ok!',
     });

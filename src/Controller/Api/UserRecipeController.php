@@ -35,18 +35,46 @@ class UserRecipeController extends AbstractController
             $type = 'midi';
         }
 
-        $userRecipe = new UserRecipe();
-        $userRecipe
-            ->setUser($user)
-            ->setDate($type)
-            ->setRecipe($recipe)
-        ;
+        $selected = (bool)$data['selected'];
 
-        $entityManager->persist($userRecipe);
+        if($selected) {
+            $userRecipe = new UserRecipe();
+            $userRecipe
+                ->setUser($user)
+                ->setDate($type)
+                ->setRecipe($recipe);
+
+            $entityManager->persist($userRecipe);
+        }
+        else {
+            $recipe = $entityManager->getRepository(UserRecipe::class)->findOneBy([
+                'date' => $type,
+                'user' => $user,
+                'recipe' => $recipe,
+            ]);
+            $entityManager->remove($recipe);
+        }
+
         $entityManager->flush();
 
         return $this->json([
-            'message' => "Recette ajoutée !"
+            'message' => $selected ? "Recette ajoutée !" : "Recette supprimée",
         ]);
+    }
+
+    /**
+     * Return all user recipes.
+     * @param EntityManagerInterface $entityManager
+     * @return JsonResponse
+     */
+    #[Route('/all', name:'all')]
+    public function getUserRecipes(EntityManagerInterface $entityManager): JsonResponse
+    {
+        $user = $entityManager->getRepository(User::class)->find(1);
+        return $this->json(
+            $entityManager->getRepository(UserRecipe::class)->findBy([
+                'user' => $user,
+            ])
+        );
     }
 }

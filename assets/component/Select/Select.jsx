@@ -15,11 +15,13 @@ export const Select = ({ children, title, type }) => {
       if (parentRef.current && !parentRef.current.contains(event.target)) {
         // Checking now if options contains event.
         let has = false;
-        Array.from(optionsRef.current.children).forEach((child) => {
-          if (child.contains(event.target)) {
-            has = true;
-          }
-        });
+        if (optionsRef.current.children) {
+          Array.from(optionsRef.current.children).forEach((child) => {
+            if (child.contains(event.target)) {
+              has = true;
+            }
+          });
+        }
         // Handling buttons.
         if (event.target.tagName === "BUTTON") {
           has = true;

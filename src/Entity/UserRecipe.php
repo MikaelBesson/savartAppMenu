@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRecipeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: UserRecipeRepository::class)]
 class UserRecipe
@@ -15,6 +16,7 @@ class UserRecipe
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userRecipes')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Ignore]
     private $user;
 
     #[ORM\ManyToOne(targetEntity: Recipe::class)]

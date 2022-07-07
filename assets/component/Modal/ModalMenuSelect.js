@@ -7,7 +7,11 @@ import useForceUpdate from "antd/es/_util/hooks/useForceUpdate";
 export const ShowModalMenu = function ({ type }) {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [categories, setCategories] = useState(new Map());
+  const [alreadySelectedRecipes, setAlreadySelectedRecipes] = useState([]);
 
+  /**
+   * Fetching available categories.
+   */
   useEffect(() => {
     fetch("/api/category/all")
       .then((categories) => categories.json())
@@ -19,9 +23,22 @@ export const ShowModalMenu = function ({ type }) {
       .catch((error) => console.error("error de récupération"));
   }, []);
 
+  /**
+   * Fetching already selected user recipe.
+   */
+  useEffect(() => {
+    fetch("/api/user-recipe/all")
+      .then((recipes) => recipes.json())
+      .then((recipes) => {
+        setAlreadySelectedRecipes(recipes.map((recipe) => recipe.recipe.id));
+      })
+      .catch((error) => console.error("error de récupération"));
+  }, []);
+
   return (
     <div className="modal-menu-selection">
       <select
+        className="select-category"
         onChange={(e) =>
           setSelectedCategory(
             parseInt(e.target.options[e.target.options.selectedIndex].value)
@@ -44,7 +61,12 @@ export const ShowModalMenu = function ({ type }) {
         <>
           <Select title="Choisir une recette" type={type}>
             {categories.get(selectedCategory).recipes.map((recipe) => (
-              <Option key={recipe.id} value={recipe.id} img={recipe.image} onS>
+              <Option
+                key={recipe.id}
+                value={recipe.id}
+                img={recipe.image}
+                defaultSelected={alreadySelectedRecipes.includes(recipe.id)}
+              >
                 {recipe.name}
               </Option>
             ))}

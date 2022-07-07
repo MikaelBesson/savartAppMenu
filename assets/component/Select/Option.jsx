@@ -6,9 +6,10 @@ export const Option = ({
   identifier,
   img,
   value,
+  defaultSelected,
   onChange = () => {},
 }) => {
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(defaultSelected);
 
   const handleChange = () => {
     setSelected(!selected);
