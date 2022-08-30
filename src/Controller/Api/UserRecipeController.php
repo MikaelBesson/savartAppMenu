@@ -28,12 +28,22 @@ class UserRecipeController extends AbstractController
         $user = $entityManager->getRepository(User::class)->find(1);
         $recipe = $entityManager->getRepository(Recipe::class)->find((int)$data['recipe']);
 
-        if(in_array($data['type'], ['midi', 'soir'])) {
-            $type = $data['type'];
+        // Handling moment.
+        if(in_array($data['moment'], ['midi', 'soir'])) {
+            $moment = $data['moment'];
         }
         else {
-            $type = 'midi';
+            $moment = 'midi';
         }
+
+        // Handling the day f week.
+        if(in_array($data['day'], ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'])) {
+            $day = $data['day'];
+        }
+        else {
+            $day = 'lundi';
+        }
+
 
         $selected = (bool)$data['selected'];
 
@@ -41,14 +51,17 @@ class UserRecipeController extends AbstractController
             $userRecipe = new UserRecipe();
             $userRecipe
                 ->setUser($user)
-                ->setDate($type)
-                ->setRecipe($recipe);
+                ->setMoment($moment)
+                ->setRecipe($recipe)
+                ->setDay($day)
+            ;
 
             $entityManager->persist($userRecipe);
         }
         else {
             $recipe = $entityManager->getRepository(UserRecipe::class)->findOneBy([
-                'date' => $type,
+                'moment' => $moment,
+                'day' => $day,
                 'user' => $user,
                 'recipe' => $recipe,
             ]);
@@ -70,6 +83,7 @@ class UserRecipeController extends AbstractController
     #[Route('/all', name:'all')]
     public function getUserRecipes(EntityManagerInterface $entityManager): JsonResponse
     {
+        // TODO faire le système de connexion.
         $user = $entityManager->getRepository(User::class)->find(1);
         return $this->json(
             $entityManager->getRepository(UserRecipe::class)->findBy([

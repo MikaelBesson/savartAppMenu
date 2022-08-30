@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/utilisateur', name: 'admin_')]
@@ -63,15 +64,17 @@ class UserController extends AbstractController
      * @param User $user
      * @param Request $request
      * @param EntityManagerInterface $entityManager
+     * @param UserPasswordHasherInterface $passwordHasher
      * @return Response
      */
     #[Route('/editer/{id}', name: 'user_edit', methods: ['GET', 'POST'])]
-    public function edit(User $user, Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(User $user, Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
             $entityManager->flush();
 
             $this->addFlash('success', 'user.updated_successfully');

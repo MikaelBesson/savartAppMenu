@@ -23,8 +23,11 @@ class UserRecipe
     #[ORM\JoinColumn(nullable: false)]
     private $recipe;
 
-    #[ORM\Column(type: 'string', length: 5)]
-    private $date;
+    #[ORM\Column(type: 'string', length: 10)]
+    private $day;
+
+    #[ORM\Column(type: 'string', length: 10)]
+    private $moment;
 
     public function getId(): ?int
     {
@@ -55,14 +58,26 @@ class UserRecipe
         return $this;
     }
 
-    public function getDate(): ?String
+    public function getDay(): ?string
     {
-        return $this->date;
+        return $this->day;
     }
 
-    public function setDate(String $date): self
+    public function setDay(string $day): self
     {
-        $this->date = $date;
+        $this->day = $day;
+
+        return $this;
+    }
+
+    public function getMoment(): ?string
+    {
+        return $this->moment;
+    }
+
+    public function setMoment(string $moment): self
+    {
+        $this->moment = $moment;
 
         return $this;
     }

@@ -1,24 +1,20 @@
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import '../scss/app.scss';
-import {Home} from '../component/Home';
-import {Header} from "../component/Header";
-import {RouteNotFound} from "../component/RouteNotFound";
+import "../scss/app.scss";
+import { Home } from "../component/Home";
+import { RouteNotFound } from "../component/RouteNotFound";
 import * as ReactDOM from "react-dom";
-import {Admin2} from "../component/Admin2";
-import {AppMenu} from "../component/AppMenu";
+import { AppMenu } from "../component/AppMenu";
 
 ReactDOM.render(
+  <BrowserRouter>
+    <img src="../images/fondecran2.jpg" alt="/" id="fondecran" />
+    <Routes>
+      <Route path="" />
+      <Route path="/" element={<Home />} />
+      <Route path="*" element={<RouteNotFound />} />
+      <Route path={"/appmenu"} element={<AppMenu />} />
+    </Routes>
+  </BrowserRouter>,
 
-    <BrowserRouter>
-        <img src="../images/fondecran2.jpg" alt="/" id="fondecran"/>
-        <Header />
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path={"/admin"} element={<Admin2 />} />
-            <Route path="*" element={<RouteNotFound />} />
-            <Route path={"/appmenu"} element={<AppMenu />} />
-        </Routes>
-    </BrowserRouter>,
-
-document.getElementById('root'));
+  document.getElementById("root")
+);

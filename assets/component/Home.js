@@ -1,12 +1,4 @@
-import React, {useState} from 'react';
-import * as PropTypes from "prop-types";
-
-
-function Login() {
-    return null;
-}
-
-Login.propTypes = {setToken: PropTypes.func};
+import React, { useState } from "react";
 
 /**
  * returns the view of the home page used for user login
@@ -14,30 +6,20 @@ Login.propTypes = {setToken: PropTypes.func};
  * @constructor
  */
 export const Home = function () {
-    const [token, setToken] = useState();
+  const [token, setToken] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    /*if(!token) {
-        return <Login setToken={setToken} />
-    }*/
-
-    return (
-        <div class='home'>
-            <h1>Connection</h1>
-            <form>
-                <div className="boxlabel">
-                    <label>Nom:</label>
-                    <label>Prenom:</label>
-                    <label>Password:</label>
-                </div>
-                <div className="boxinput">
-                    <input type="text" name="name" id="name"/>
-                    <input type="text" name="lastname" id="lastname"/>
-                    <input type="password" name="password" id="password"/>
-                </div>
-            </form>
-            <div className="button">
-                <button type="submit">Envoyer</button>
-            </div>
-        </div>
-    );
-}
+  // On envoie vers le serveur !!
+  const request = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: email,
+      password,
+    }),
+  };
+  fetch("/api/login", request).then((r) => console.log(r));
+};

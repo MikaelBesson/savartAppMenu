@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DayElement } from "./MenuTable/DayElement";
 import { DayElementHeader } from "./MenuTable/DayElementHeader";
 
@@ -19,6 +19,9 @@ export const AppMenu = function () {
     "dimanche",
   ];
 
+  // chercher les recettes sélectionnées.
+  useEffect(() => {}, []);
+
   return (
     <div className="appMenu">
       <h1>Menu de la semaine</h1>
@@ -37,8 +40,8 @@ export const AppMenu = function () {
             {days.map((day) => (
               <DayElement
                 key={1 + day}
-                dayName={daysNames[day - 1]}
-                type={"midi"}
+                day={daysNames[day - 1]}
+                moment={"midi"}
               />
             ))}
           </tr>
@@ -47,8 +50,8 @@ export const AppMenu = function () {
             {days.map((day) => (
               <DayElement
                 key={2 + day}
-                dayName={daysNames[day - 1]}
-                type={"soir"}
+                day={daysNames[day - 1]}
+                moment={"soir"}
               />
             ))}
           </tr>

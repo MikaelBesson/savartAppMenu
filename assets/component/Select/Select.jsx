@@ -1,7 +1,7 @@
 import "./Select.scss";
 import { useRef, useState, Children, cloneElement, useEffect } from "react";
 
-export const Select = ({ children, title, type }) => {
+export const Select = ({ children, title, moment, day }) => {
   const [showOptions, setShowOptions] = useState(false);
   const parentRef = useRef();
   const optionsRef = useRef();
@@ -49,7 +49,8 @@ export const Select = ({ children, title, type }) => {
       body: JSON.stringify({
         recipe: optionKey,
         selected: isSelected,
-        type: type,
+        moment: moment,
+        day: day,
       }),
     })
       .then((result) => result.json())
